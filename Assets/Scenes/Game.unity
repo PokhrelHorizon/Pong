@@ -501,7 +501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b2c1fa73ae5fc5459220e36d16eadb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addBallSpeedPercent: 0.3
+  addBallSpeedPercent: 0.4
   ball: {fileID: 8176605758017360564, guid: b54abe1f4f038d6428025a189b06cccb, type: 3}
   initialBallSpeed: 500
 --- !u!1 &811806123
