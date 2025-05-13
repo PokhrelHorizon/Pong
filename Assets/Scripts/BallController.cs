@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class BallController : MonoBehaviour
 {
@@ -8,13 +9,10 @@ public class BallController : MonoBehaviour
     [SerializeField] private GameObject ball; //to reference ball prefab, used to instantiate it
 
     private float ballSpawnRange = 13f; //15 width, 1 ball, 1 buffer space so that ball doesn't spawn too close to wall
-
     private GameObject spawnedBall; //to reference ball already spawned in game
-
     private Rigidbody2D rbSpawnedBall; //to reference Rigidbody2D of spawned ball
-
     private int ballMoveDirX, ballMoveDirY;   //assign move direction in X and Y randomly
-
+    
     [SerializeField] private float initialBallSpeed;
 
     //used to spawn the ball
@@ -48,6 +46,19 @@ public class BallController : MonoBehaviour
         //.normalized makes linear velocity mag 1
         rbSpawnedBall.AddForce(rbSpawnedBall.linearVelocity.normalized * initialBallSpeed * addBallSpeedPercent);
 
+    }
+
+    //used by ballcollisiondetector to change direction of ball based on where the ball hit the paddle
+    public void ChangeBallDirectionOnPaddleCollide(Vector2 paddlePosition, Vector2 ballPosition)
+    {
+
+        Vector2 newBallDirection;   //store normalized new direction
+
+        //formula to get normalized direction between paddle center and ball center
+        newBallDirection = new Vector2(paddlePosition.x - ballPosition.x, paddlePosition.y -  ballPosition.y).normalized;
+
+        //change direction of ball multiply magnitude of spawned ball with calculated direction
+        rbSpawnedBall.linearVelocity = rbSpawnedBall.linearVelocity.magnitude * newBallDirection; 
     }
 }
 
