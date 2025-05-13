@@ -16,6 +16,7 @@ public class BallController : MonoBehaviour
 
     [SerializeField] private float ballSpeed;
 
+    private float ballAngleExtent = 30f; //angle extent from x to 90-x to vertical(both + -) on which ball can move
 
     //used to spawn the ball
     public void BallSpawn()
@@ -36,8 +37,8 @@ public class BallController : MonoBehaviour
 
         //Assign random direction
         //first part gives positive or negative unit value to direction, second value used for angle in that direction
-        ballMoveAngle = (Random.Range(-1, 2) == 0 ? -1 : 1) * Random.Range(20, 70);
-        Debug.Log("Move Angle = " + ballMoveAngle);
+        ballMoveAngle = (Random.Range(-1, 2) == 0 ? -1 : 1) * Random.Range(ballAngleExtent, 90 - ballAngleExtent);
+        Debug.Log("Move Angle from vertical = " + ballMoveAngle);
 
         //Add force to ball at start, which gives it velocity which stays constant as no dampeners present
         //cos,sin to calculate component of vector from angle, functions swapped to take vertical as 0 degree instead of horizontal
