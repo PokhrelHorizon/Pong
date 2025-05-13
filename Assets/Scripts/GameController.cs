@@ -11,16 +11,32 @@ public class GameController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //Spawn Ball 
+         
         ballControllerScript = GameObject.Find("BallManager").GetComponent<BallController>();   //get BallController Script
+
+
+        //spawn Ball
+        BallSpawnOrRespawn();
+        
+    }
+
+
+    //used to spawn or respawnball
+    public void BallSpawnOrRespawn()
+    {
+        //find and kill ball if one is there
+        GameObject activeBall = GameObject.FindGameObjectWithTag("ball");
+        if(activeBall != null)
+        {
+            Destroy(activeBall);
+        }
+
+        //Spawn Ball
         ballControllerScript.BallSpawn();
 
         //Delay ball moving and Move Ball
         StartCoroutine(BallWait(timeToMoveBall));
-
-        
     }
-
     //Coroutine to use waitforseconds function
     IEnumerator BallWait(float timeToWait)
     {
@@ -30,4 +46,6 @@ public class GameController : MonoBehaviour
         //Move ball
         ballControllerScript.MoveBall();
     }
+
+    
 }
