@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEngine.Rendering.VirtualTexturing.Debugging;
 using UnityEngine.UI;
 using TMPro;
 
