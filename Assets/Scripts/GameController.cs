@@ -3,22 +3,68 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    BallController ballControllerScript;
+    //reference script
+    private BallController ballControllerScript;
+   
 
     [SerializeField] private float timeToMoveBall;
 
+    [SerializeField] private GameObject pauseUI; //reference UI that activates when paused
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private bool gameIsPaused = false;  //stores whether game is true
     void Start()
     {
          
         ballControllerScript = GameObject.Find("BallManager").GetComponent<BallController>();   //get BallController Script
-
-
         //spawn Ball
         BallSpawnOrRespawn();
         
     }
+
+
+    private void Update()
+    {
+        //get Esc key to pause/resume game and activate/deactivate pause UI
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(gameIsPaused)
+            {
+                GameResume();
+            }
+            else 
+            {
+                GamePause();
+            }
+        }
+    }
+
+    //Resume game
+    public void GameResume()
+    {
+        //deactivates UI
+        pauseUI.SetActive(false);
+
+        //resumes in game time
+        Time.timeScale = 1f;
+
+        //set bool status
+        gameIsPaused = false;
+    }
+
+
+    //Pause game
+    public void GamePause()
+    {
+        //activates UI
+        pauseUI.SetActive(true);
+
+        //freezes in game time
+        Time.timeScale = 0f;
+
+        //set bool status
+        gameIsPaused = true;
+    }
+
 
 
     //used to spawn or respawnball
