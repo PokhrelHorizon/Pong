@@ -35,5 +35,10 @@ public class MenuUIBehaviour : MonoBehaviour
         //unfreeze the scene before going to another scene.
         Time.timeScale = 1f;
     }
+
+    public void QuitGameOnButtonClick()
+    {
+        Application.Quit();
+    }
     
 }
