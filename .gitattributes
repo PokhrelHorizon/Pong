@@ -1,1 +1,2 @@
-*.cs linguist-language=csharp
+*.shader linguist-detectable=false
+*.cginc linguist-detectable=false
