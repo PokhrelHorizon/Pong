@@ -53,9 +53,10 @@ public class BallController : MonoBehaviour
     {
 
         Vector2 newBallDirection;   //store normalized new direction
+        float xDirMultiplier = 1.5f;       //x multiplied by factor to prevent almost vertical ball movement in some situations
 
         //formula to get normalized direction between paddle center and ball center
-        newBallDirection = new Vector2(paddlePosition.x - ballPosition.x, paddlePosition.y -  ballPosition.y).normalized;
+        newBallDirection = new Vector2((paddlePosition.x - ballPosition.x) * xDirMultiplier, paddlePosition.y -  ballPosition.y).normalized;
 
         //change direction of ball multiply magnitude of spawned ball with calculated direction
         rbSpawnedBall.linearVelocity = rbSpawnedBall.linearVelocity.magnitude * newBallDirection; 

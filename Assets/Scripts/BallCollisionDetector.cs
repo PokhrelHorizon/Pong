@@ -1,15 +1,21 @@
 using UnityEngine;
 using static UnityEngine.Rendering.VirtualTexturing.Debugging;
+using UnityEngine.UI;
+using TMPro;
 
 public class BallCollisionDetector : MonoBehaviour
 {
-    private BallController ballControllerScript;    //reference ballController script
-    private GameController gameControllerScript;    //reference gameController script
+    private BallController ballControllerScript;    //reference BallController script
+    private GameController gameControllerScript;    //reference GameController script
+    private ScoreController scoreControllerScript;  //reference ScoreController script
+    
     
     void Start()
     {
+        //find required scripts
         ballControllerScript = GameObject.Find("BallManager").GetComponent<BallController>();
         gameControllerScript = GameObject.Find("GameManager").GetComponent<GameController>();
+        scoreControllerScript = GameObject.Find("ScoreManager").GetComponent<ScoreController>();
     }
 
     //runs when ball collides with paddle
@@ -42,6 +48,20 @@ public class BallCollisionDetector : MonoBehaviour
 
             //kill ball, spawn another ball
             gameControllerScript.BallSpawnOrRespawn();
+
+            if(deathZone.name == "DeathzoneR")
+            {
+                //if ball dies on right, point awarded to p1
+                scoreControllerScript.UpdateScore(1);
+
+            }
+            else if(deathZone.name == "DeathzoneL")
+            {
+                //if ball dies on left, point awarded to p2
+                scoreControllerScript.UpdateScore(2);
+            }
+
+
         }
     }
 }
