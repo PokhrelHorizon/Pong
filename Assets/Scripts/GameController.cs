@@ -1,24 +1,36 @@
+using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
     //reference script
     private BallController ballControllerScript;
-   
+    private ScoreController scoreControllerScript;
 
     [SerializeField] private float timeToMoveBall;
 
     [SerializeField] private GameObject pauseUI; //reference UI that activates when paused
 
-    private bool gameIsPaused = false;  //stores whether game is true
+    [SerializeField] private GameObject gameWinUI; //reference UI that activates when game is won
+
+    [SerializeField] private TMP_Text WhichPlayerWonText;
+
+    private bool gameIsPaused = false, gameisWon = false;  //stores whether game is true
+
+    //to use when to award win to one player,gets from dropdownbehavior
+    private int exitConditionValue;  
     void Start()
     {
-         
+        //get value from playerprefs
+        exitConditionValue = PlayerPrefs.GetInt("gameWinCondition");
+
         ballControllerScript = GameObject.Find("BallManager").GetComponent<BallController>();   //get BallController Script
+        scoreControllerScript = GameObject.Find("ScoreManager").GetComponent<ScoreController>();
         //spawn Ball
         BallSpawnOrRespawn();
-        
+
     }
 
 
@@ -34,6 +46,30 @@ public class GameController : MonoBehaviour
             else 
             {
                 GamePause();
+            }
+        }
+
+        //check if exit condition is satisfied, must not be zero(set as infinite config), greater or equal to max player score
+        //gameisWon there as update tries to run this statement every time
+        if((gameisWon == false) && (exitConditionValue !=0) && (scoreControllerScript.p1Score >= exitConditionValue || scoreControllerScript.p2Score >= exitConditionValue))
+        {
+            //activates UI
+            gameWinUI.SetActive(true);
+
+            //freeze time
+            Time.timeScale = 0f;
+
+            //change state
+            gameisWon = true;
+
+            //sets text as which player won
+            if(scoreControllerScript.p1Score >= exitConditionValue)
+            {
+                WhichPlayerWonText.text = "Player 1 WINS";
+            }
+            else if (scoreControllerScript.p2Score >= exitConditionValue)
+            {
+                WhichPlayerWonText.text = "Player 2 WINS";
             }
         }
     }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ScoreController : MonoBehaviour
 {
     [SerializeField] private TMP_Text p1ScoreText, p2ScoreText; //reference TMP objects
-    private int p1Score, p2Score; //store and update score
+    public int p1Score, p2Score; //store and update score
 
     public void UpdateScore(int whichPlayer)
     {

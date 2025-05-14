@@ -27,5 +27,13 @@ public class MenuUIBehaviour : MonoBehaviour
         SceneManager.LoadScene("Game");
     }
 
+    //used to restart game scene
+    public void RestartOnButtonClick()
+    {
+        SceneManager.LoadScene("Game");
+
+        //unfreeze the scene before going to another scene.
+        Time.timeScale = 1f;
+    }
     
 }
