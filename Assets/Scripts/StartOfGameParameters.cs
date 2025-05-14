@@ -6,6 +6,7 @@ public class StartOfGameParameters : MonoBehaviour
     void Start()
     {
         PlayerPrefs.SetInt("gameWinCondition", 0); //set 0 at first
+        PlayerPrefs.Save();
     }
 
     

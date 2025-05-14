@@ -39,5 +39,7 @@ public class DropDownBehaviour : MonoBehaviour
                 break;
 
         }
+
+        PlayerPrefs.Save();
     }
 }
