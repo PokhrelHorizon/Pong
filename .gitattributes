@@ -1,3 +1,4 @@
 *.shader linguist-vendored
 *.cginc linguist-vendored
+TextMesh Pro/* linguist-vendored
 
