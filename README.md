@@ -11,8 +11,8 @@ Additions from the original Atari version include a game win condition selector,
 ### Play/Download
 Play the game on your browser on itch.io - [Link](https://pokhrelhorizon.itch.io/pong)
 
-Download the Windows binary - [Link](https://www.mediafire.com/file/akpbrozdpd1lwjp/PongWindowsv0.2.zip/file)
+Download the Windows binary - [Link](https://www.mediafire.com/file/o4fbb9i5dmy3vgv/PongWindowsv0.3.zip/file)
 
-Download the Unity project - [Link](https://www.mediafire.com/file/l2c4w9v190fdhe5/PongProjectFilesv0.2.zip/file)
+Download the Unity project - Link (uploaded soon)
 
 Click the link for a suprise! - [Link](https://www.youtube.com/watch?v=3BFTio5296w)
