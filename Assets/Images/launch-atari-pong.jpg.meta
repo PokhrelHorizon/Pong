@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      launch-atari-pong_0: -5159553559963263058
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
